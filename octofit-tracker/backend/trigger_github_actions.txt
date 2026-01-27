@@ -1,0 +1,2 @@
+# Trigger GitHub Actions
+This file is used to trigger a new GitHub Actions workflow run.
