@@ -3,11 +3,12 @@ import React, { useEffect, useState } from 'react';
 
 export default function Teams() {
   const [teams, setTeams] = useState([]);
+  const apiUrl = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/teams/`;
   useEffect(() => {
-    fetch('/api/teams/')
+    fetch(apiUrl)
       .then(res => res.json())
       .then(data => setTeams(data.results || data));
-  }, []);
+  }, [apiUrl]);
   return (
     <div>
       <h2>Teams</h2>

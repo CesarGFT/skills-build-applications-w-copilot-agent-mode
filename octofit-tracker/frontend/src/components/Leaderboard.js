@@ -3,11 +3,12 @@ import React, { useEffect, useState } from 'react';
 
 export default function Leaderboard() {
   const [leaderboard, setLeaderboard] = useState([]);
+  const apiUrl = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/leaderboard/`;
   useEffect(() => {
-    fetch('/api/leaderboard/')
+    fetch(apiUrl)
       .then(res => res.json())
       .then(data => setLeaderboard(data.results || data));
-  }, []);
+  }, [apiUrl]);
   return (
     <div>
       <h2>Leaderboard</h2>

@@ -3,11 +3,12 @@ import React, { useEffect, useState } from 'react';
 
 export default function Workouts() {
   const [workouts, setWorkouts] = useState([]);
+  const apiUrl = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/workouts/`;
   useEffect(() => {
-    fetch('/api/workouts/')
+    fetch(apiUrl)
       .then(res => res.json())
       .then(data => setWorkouts(data.results || data));
-  }, []);
+  }, [apiUrl]);
   return (
     <div>
       <h2>Workouts</h2>
