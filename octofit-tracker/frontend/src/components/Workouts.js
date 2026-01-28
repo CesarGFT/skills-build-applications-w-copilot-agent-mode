@@ -1,4 +1,21 @@
 // octofit-tracker/frontend/src/components/Workouts.js
+import React, { useEffect, useState } from 'react';
+
 export default function Workouts() {
-  return <div>Workouts component placeholder</div>;
+  const [workouts, setWorkouts] = useState([]);
+  useEffect(() => {
+    fetch('/api/workouts/')
+      .then(res => res.json())
+      .then(data => setWorkouts(data.results || data));
+  }, []);
+  return (
+    <div>
+      <h2>Workouts</h2>
+      <ul>
+        {workouts.map((w, i) => (
+          <li key={i}>{w.name || JSON.stringify(w)}</li>
+        ))}
+      </ul>
+    </div>
+  );
 }
